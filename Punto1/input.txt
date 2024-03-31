@@ -1,0 +1,4 @@
+100      #nmolecules
+4        #latticesize
+6000000  #niterations
+0        #randomgeneratorseed
