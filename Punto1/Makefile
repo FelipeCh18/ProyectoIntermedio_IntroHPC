@@ -4,6 +4,13 @@ SANITIZER_FLAGS = -fsanitize=address -fsanitize=undefined
 GPROF_FLAGS = -pg
 VALGRIND_FLAGS = -g
 
+all: main
+    ./main.exe input.txt > output.txt
+
+test: test.exe
+    ./test.exe
+
+
 gprof: main_gprof
     valgrind --tool=cachegrind ./main.exe input.txt > output.txt
     cg_annotate --auto=yes cachegrind.out.* > cachegrind-report.txt
