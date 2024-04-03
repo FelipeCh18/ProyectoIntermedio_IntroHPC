@@ -2,7 +2,8 @@
 #ifndef PARTICLE_HPP
 #define PARTICLE_HPP
 
-class Particle {
+class Particle
+{
 public:
     Particle(double x = 0, double y = 0);
 

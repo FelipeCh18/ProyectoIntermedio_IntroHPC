@@ -5,12 +5,13 @@
 #include "Box.hpp"
 #include "InputReader.hpp"
 
-class Simulation {
+class Simulation
+{
 public:
-    Simulation(const InputParams& params);
+    Simulation(const InputParams &params);
 
     void run();
-    const Box& getBox() const;
+    const Box &getBox() const;
     int getIterations() const;
     int getSeed() const;
 

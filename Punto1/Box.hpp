@@ -6,14 +6,15 @@
 #include "InputReader.hpp"
 #include <vector>
 
-class Box {
+class Box
+{
 public:
     Box(int latticeSize, int nMolecules);
 
     void moveParticles();
-    void recordDistribution(); // Método para registrar la distribución de partículas
-    void printParticleDistribution() const;
-    const std::vector<std::vector<int>>& getParticleCounts() const;
+    void recordDistribution(int timestep, int print_bit); // Método para registrar la distribución de partículas
+    void printParticleDistribution(int timestep) const;
+    const std::vector<std::vector<int>> &getParticleCounts() const;
 
 private:
     int latticeSize_;
