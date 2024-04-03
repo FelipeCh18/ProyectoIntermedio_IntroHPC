@@ -1,0 +1,35 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+// Define the grid
+grid = np.zeros((200, 200))
+
+// Distribute the cream molecules
+molecules = np.random.randint(0, 200, (400, 2))
+
+// Simulate the movement of the cream molecules
+for t in range(1000):
+  for i in range(400):
+    # Mover la molécula a un punto vecino aleatorio
+    new_x = molecules[i, 0] + np.random.randint(-1, 2)
+    new_y = molecules[i, 1] + np.random.randint(-1, 2)
+    
+    // Move the molecule to a random neighboring point
+    if 0 <= new_x < 200 and 0 <= new_y < 200:
+      molecules[i, 0] = new_x
+      molecules[i, 1] = new_y
+
+// Generate scatter plots
+plt.subplot(131)
+plt.scatter(molecules[:, 0], molecules[:, 1])
+plt.title('t = 0')
+
+plt.subplot(132)
+plt.scatter(molecules[:, 0], molecules[:, 1])
+plt.title('t = 500')
+
+plt.subplot(133)
+plt.scatter(molecules[:, 0], molecules[:, 1])
+plt.title('t = 1000')
+
+plt.show()
