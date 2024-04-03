@@ -1,35 +1,75 @@
-import numpy as np
-import matplotlib.pyplot as plt
+#include <iostream>
+#include <vector>
+#include <random>
+#include < matplotlib/pyplot.h >
+
+using namespace std;
 
 // Define the grid
-grid = np.zeros((200, 200))
+const int grid_size = 200;
+vector<int> grid(grid_size * grid_size, 0);
 
 // Distribute the cream molecules
-molecules = np.random.randint(0, 200, (400, 2))
+void distribute_molecules(vector<int>& molecules) {
+  for (int i = 0; i < molecules.size(); i++) {
+    molecules[i] = rand() % grid_size;
+  }
+}
 
 // Simulate the movement of the cream molecules
-for t in range(1000):
-  for i in range(400):
-    # Mover la molécula a un punto vecino aleatorio
-    new_x = molecules[i, 0] + np.random.randint(-1, 2)
-    new_y = molecules[i, 1] + np.random.randint(-1, 2)
-    
-    // Move the molecule to a random neighboring point
-    if 0 <= new_x < 200 and 0 <= new_y < 200:
-      molecules[i, 0] = new_x
-      molecules[i, 1] = new_y
+void simulate_diffusion(vector<int>& molecules, int num_steps) {
+  for (int t = 0; t < num_steps; t++) {
+    for (int i = 0; i < molecules.size(); i++) {
+      // Move the molecule to a random neighboring point
+      int new_x = molecules[i] + rand() % 3 - 1;
+      int new_y = molecules[i] / grid_size + rand() % 3 - 1;
+
+      // Ensure the molecule is within the grid
+      if (0 <= new_x && new_x < grid_size && 0 <= new_y && new_y < grid_size) {
+        molecules[i] = new_x + new_y * grid_size;
+      }
+    }
+  }
+}
 
 // Generate scatter plots
-plt.subplot(131)
-plt.scatter(molecules[:, 0], molecules[:, 1])
-plt.title('t = 0')
+void generate_plots(vector<int>& molecules, int t) {
+  // Convert the molecule positions to x and y coordinates
+  vector<int> x_positions, y_positions;
+  for (int i = 0; i < molecules.size(); i++) {
+    x_positions.push_back(molecules[i] % grid_size);
+    y_positions.push_back(molecules[i] / grid_size);
+  }
 
-plt.subplot(132)
-plt.scatter(molecules[:, 0], molecules[:, 1])
-plt.title('t = 500')
+  // Create a subplot for the current time
+  plt::subplot(1, 3, t + 1);
+  plt::scatter(x_positions, y_positions);
+  plt::title("t = " + to_string(t));
 
-plt.subplot(133)
-plt.scatter(molecules[:, 0], molecules[:, 1])
-plt.title('t = 1000')
+  // Display the plots
+  if (t == 2) {
+    plt::show();
+  }
+}
 
-plt.show()
+int main() {
+  // Number of cream molecules
+  const int num_molecules = 400;
+
+  // Number of time steps
+  const int num_steps = 1000;
+
+  // Distribute the cream molecules
+  vector<int> molecules(num_molecules);
+  distribute_molecules(molecules);
+
+  // Simulate the diffusion of the cream
+  simulate_diffusion(molecules, num_steps);
+
+  // Generate scatter plots
+  generate_plots(molecules, 0);
+  generate_plots(molecules, 500);
+  generate_plots(molecules, 1000);
+
+  return 0;
+}
