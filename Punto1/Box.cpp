@@ -57,7 +57,7 @@ void Box::moveParticles()
     // Configurar el generador de números aleatorios
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<double> dis(-0.5, 0.5); // Distribución uniforme entre -0.5 y 0.5
+    std::uniform_real_distribution<> dis(-0.0025, 0.0025); // Distribución uniforme entre -0.5 y 0.5
 
     // Mover cada partícula de manera aleatoria
     for (auto &particle : particles_)

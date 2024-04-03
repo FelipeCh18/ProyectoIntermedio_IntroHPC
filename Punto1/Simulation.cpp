@@ -31,12 +31,10 @@ void Simulation::run()
             if (i == 100)
             {
                 mod10 *= 10;
-                box_.recordDistribution(i,1);
             }
             if (i == 1000)
             {
                 mod10 *= 10;
-                box_.recordDistribution(i,1);
             }
             if (i == 10000)
             {
@@ -49,22 +47,6 @@ void Simulation::run()
                 box_.recordDistribution(i,1);
             }
             if (i == 1000000)
-            {
-                box_.recordDistribution(i,1);
-            }
-            if (i == 2000000)
-            {
-                box_.recordDistribution(i,1);
-            }
-            if (i == 3000000)
-            {
-                box_.recordDistribution(i,1);
-            }
-            if (i == 4000000)
-            {
-                box_.recordDistribution(i,1);
-            }
-            if (i == 5000000)
             {
                 box_.recordDistribution(i,1);
             }
